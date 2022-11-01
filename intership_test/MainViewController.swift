@@ -1,14 +1,9 @@
-//
-//  ViewController.swift
-//  intership_test
-//
-//  Created by Костина Вероника  on 31.10.2022.
-//
-
 import UIKit
 
 class MainViewController: UIViewController {
-    var companyDataNetworkService: CompanyDataNetworkServiceProtocol?
+    private var companyDataNetworkService: CompanyDataNetworkServiceProtocol?
+    private var companyName: String?
+    private var employees: [Employee]?
     
     init(
         companyDataNetworkService: CompanyDataNetworkServiceProtocol = CompanyDataNetworkService()
@@ -23,6 +18,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         getCompanyData()
     }
     
@@ -30,8 +26,10 @@ class MainViewController: UIViewController {
         companyDataNetworkService?.getCompanyData { result in
             switch result {
             case let .success(companyData):
-                print(companyData)
+                self.companyName = companyData.name
+                self.employees = companyData.employess
             case let .failure(error):
+                //TODO: add alert
                 print(error)
             }
         }
