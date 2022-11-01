@@ -25,9 +25,11 @@
 		98FD753A29113C19004C2050 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD753929113C19004C2050 /* Employee.swift */; };
 		98FD753C291150B1004C2050 /* CompaniesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD753B291150B1004C2050 /* CompaniesDTO.swift */; };
 		98FD753E291150D9004C2050 /* CompanyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD753D291150D9004C2050 /* CompanyDTO.swift */; };
+		BC4E385D536203020599F2AD /* Pods_intership_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC6F4FD2F851CDF2688C2F7 /* Pods_intership_test.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5612B66C7F42F92E343C536A /* Pods-intership_test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-intership_test.debug.xcconfig"; path = "Target Support Files/Pods-intership_test/Pods-intership_test.debug.xcconfig"; sourceTree = "<group>"; };
 		98FD7505291056C2004C2050 /* intership_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = intership_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98FD7508291056C2004C2050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98FD750C291056C2004C2050 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		98FD753929113C19004C2050 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		98FD753B291150B1004C2050 /* CompaniesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesDTO.swift; sourceTree = "<group>"; };
 		98FD753D291150D9004C2050 /* CompanyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDTO.swift; sourceTree = "<group>"; };
+		A8C6F09DAFFD9E76373C359F /* Pods-intership_test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-intership_test.release.xcconfig"; path = "Target Support Files/Pods-intership_test/Pods-intership_test.release.xcconfig"; sourceTree = "<group>"; };
+		DFC6F4FD2F851CDF2688C2F7 /* Pods_intership_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_intership_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,17 +59,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC4E385D536203020599F2AD /* Pods_intership_test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A6EBF7D721349D5EB34AC93 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5612B66C7F42F92E343C536A /* Pods-intership_test.debug.xcconfig */,
+				A8C6F09DAFFD9E76373C359F /* Pods-intership_test.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		98FD74FC291056C2004C2050 = {
 			isa = PBXGroup;
 			children = (
 				98FD7507291056C2004C2050 /* intership_test */,
 				98FD7506291056C2004C2050 /* Products */,
+				1A6EBF7D721349D5EB34AC93 /* Pods */,
+				BAF7FFB43A421071AA50ECB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +175,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		BAF7FFB43A421071AA50ECB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFC6F4FD2F851CDF2688C2F7 /* Pods_intership_test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,9 +190,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98FD7519291056C9004C2050 /* Build configuration list for PBXNativeTarget "intership_test" */;
 			buildPhases = (
+				530820ABCE4253B317F545F6 /* [CP] Check Pods Manifest.lock */,
 				98FD7501291056C2004C2050 /* Sources */,
 				98FD7502291056C2004C2050 /* Frameworks */,
 				98FD7503291056C2004C2050 /* Resources */,
+				98FD7541291199AC004C2050 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -223,6 +249,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		530820ABCE4253B317F545F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-intership_test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98FD7541291199AC004C2050 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		98FD7501291056C2004C2050 /* Sources */ = {
@@ -380,6 +448,7 @@
 		};
 		98FD751A291056C9004C2050 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5612B66C7F42F92E343C536A /* Pods-intership_test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -408,6 +477,7 @@
 		};
 		98FD751B291056C9004C2050 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8C6F09DAFFD9E76373C359F /* Pods-intership_test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
