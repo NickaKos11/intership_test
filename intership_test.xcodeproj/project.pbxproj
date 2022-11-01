@@ -23,6 +23,8 @@
 		98FD753529113B2D004C2050 /* CompanyDataNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD753429113B2D004C2050 /* CompanyDataNetworkService.swift */; };
 		98FD753829113BD4004C2050 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD753729113BD4004C2050 /* Company.swift */; };
 		98FD753A29113C19004C2050 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD753929113C19004C2050 /* Employee.swift */; };
+		98FD753C291150B1004C2050 /* CompaniesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD753B291150B1004C2050 /* CompaniesDTO.swift */; };
+		98FD753E291150D9004C2050 /* CompanyDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD753D291150D9004C2050 /* CompanyDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		98FD753429113B2D004C2050 /* CompanyDataNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDataNetworkService.swift; sourceTree = "<group>"; };
 		98FD753729113BD4004C2050 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		98FD753929113C19004C2050 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		98FD753B291150B1004C2050 /* CompaniesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesDTO.swift; sourceTree = "<group>"; };
+		98FD753D291150D9004C2050 /* CompanyDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 		98FD751F29112D1E004C2050 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				98FD753B291150B1004C2050 /* CompaniesDTO.swift */,
+				98FD753D291150D9004C2050 /* CompanyDTO.swift */,
 				98FD752029112D34004C2050 /* EmployeesDTO.swift */,
 			);
 			path = DTO;
@@ -228,9 +234,11 @@
 				98FD752F291133A5004C2050 /* BaseURL.swift in Sources */,
 				98FD7529291132D9004C2050 /* BaseURLHost.swift in Sources */,
 				98FD752D29113384004C2050 /* BaseURLData.swift in Sources */,
+				98FD753C291150B1004C2050 /* CompaniesDTO.swift in Sources */,
 				98FD753329113751004C2050 /* NetworkErrors.swift in Sources */,
 				98FD7527291132B2004C2050 /* BaseURLProtocol.swift in Sources */,
 				98FD753129113609004C2050 /* BaseRequest.swift in Sources */,
+				98FD753E291150D9004C2050 /* CompanyDTO.swift in Sources */,
 				98FD7509291056C2004C2050 /* AppDelegate.swift in Sources */,
 				98FD75242911323C004C2050 /* BaseSession.swift in Sources */,
 				98FD753529113B2D004C2050 /* CompanyDataNetworkService.swift in Sources */,

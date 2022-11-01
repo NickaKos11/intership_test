@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func createWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let rootVc = MainViewController()
-        window?.rootViewController = rootVc
+        let rootViewController = MainViewController()
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
 }

@@ -45,8 +45,7 @@ final class CompanyDataNetworkService: CompanyDataNetworkServiceProtocol {
                 self.completionQueue.async {
                     switch result {
                     case let .success(companiesDTO):
-                        print(companiesDTO)
-                        completion(.success(Company(name: "что-то пришло", employess: [Employee(name: "fff", phoneNumber: "999", skills: ["dd", "ss"])])))
+                        completion(.success(Company(from: companiesDTO)))
                     case let .failure(error):
                         completion(.failure(error))
                     }
