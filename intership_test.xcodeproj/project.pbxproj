@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9837D2D22911C10500DE2E38 /* EmployeeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9837D2D12911C10500DE2E38 /* EmployeeCollectionViewCell.swift */; };
+		9890C589291264CF009A0203 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9890C588291264CF009A0203 /* ColorPalette.swift */; };
+		9890C58B29126707009A0203 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9890C58A29126707009A0203 /* UIFontExtension.swift */; };
+		9890C5922912B16C009A0203 /* SkillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9890C5912912B16C009A0203 /* SkillCollectionViewCell.swift */; };
+		9890C5982912E68D009A0203 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9890C5972912E68D009A0203 /* SF-Pro.ttf */; };
 		98FD7509291056C2004C2050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD7508291056C2004C2050 /* AppDelegate.swift */; };
 		98FD750D291056C2004C2050 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FD750C291056C2004C2050 /* MainViewController.swift */; };
 		98FD7512291056C9004C2050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98FD7511291056C9004C2050 /* Assets.xcassets */; };
@@ -30,6 +35,11 @@
 
 /* Begin PBXFileReference section */
 		5612B66C7F42F92E343C536A /* Pods-intership_test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-intership_test.debug.xcconfig"; path = "Target Support Files/Pods-intership_test/Pods-intership_test.debug.xcconfig"; sourceTree = "<group>"; };
+		9837D2D12911C10500DE2E38 /* EmployeeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeCollectionViewCell.swift; sourceTree = "<group>"; };
+		9890C588291264CF009A0203 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		9890C58A29126707009A0203 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		9890C5912912B16C009A0203 /* SkillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCollectionViewCell.swift; sourceTree = "<group>"; };
+		9890C5972912E68D009A0203 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro.ttf"; path = "../../../../../../../Library/Fonts/SF-Pro.ttf"; sourceTree = "<group>"; };
 		98FD7505291056C2004C2050 /* intership_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = intership_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98FD7508291056C2004C2050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98FD750C291056C2004C2050 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +85,41 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9890C58C2912671B009A0203 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9890C58A29126707009A0203 /* UIFontExtension.swift */,
+				9890C5972912E68D009A0203 /* SF-Pro.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9890C5932912E37B009A0203 /* Сontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				98FD750C291056C2004C2050 /* MainViewController.swift */,
+			);
+			path = "Сontrollers";
+			sourceTree = "<group>";
+		};
+		9890C5952912E39E009A0203 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9837D2D12911C10500DE2E38 /* EmployeeCollectionViewCell.swift */,
+				9890C5912912B16C009A0203 /* SkillCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9890C5962912E3DF009A0203 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				9890C58C2912671B009A0203 /* Fonts */,
+				9890C588291264CF009A0203 /* ColorPalette.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		98FD74FC291056C2004C2050 = {
 			isa = PBXGroup;
 			children = (
@@ -96,10 +141,12 @@
 		98FD7507291056C2004C2050 /* intership_test */ = {
 			isa = PBXGroup;
 			children = (
+				98FD7508291056C2004C2050 /* AppDelegate.swift */,
 				98FD751C29112C89004C2050 /* Services */,
 				98FD753629113BB6004C2050 /* Models */,
-				98FD7508291056C2004C2050 /* AppDelegate.swift */,
-				98FD750C291056C2004C2050 /* MainViewController.swift */,
+				9890C5932912E37B009A0203 /* Сontrollers */,
+				9890C5952912E39E009A0203 /* View */,
+				9890C5962912E3DF009A0203 /* SupportingFiles */,
 				98FD7511291056C9004C2050 /* Assets.xcassets */,
 				98FD7513291056C9004C2050 /* LaunchScreen.storyboard */,
 				98FD7516291056C9004C2050 /* Info.plist */,
@@ -244,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98FD7515291056C9004C2050 /* LaunchScreen.storyboard in Resources */,
+				9890C5982912E68D009A0203 /* SF-Pro.ttf in Resources */,
 				98FD7512291056C9004C2050 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +346,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				98FD750D291056C2004C2050 /* MainViewController.swift in Sources */,
+				9890C58B29126707009A0203 /* UIFontExtension.swift in Sources */,
+				9837D2D22911C10500DE2E38 /* EmployeeCollectionViewCell.swift in Sources */,
 				98FD752129112D35004C2050 /* EmployeesDTO.swift in Sources */,
 				98FD752F291133A5004C2050 /* BaseURL.swift in Sources */,
 				98FD7529291132D9004C2050 /* BaseURLHost.swift in Sources */,
@@ -305,8 +355,10 @@
 				98FD753C291150B1004C2050 /* CompaniesDTO.swift in Sources */,
 				98FD753329113751004C2050 /* NetworkErrors.swift in Sources */,
 				98FD7527291132B2004C2050 /* BaseURLProtocol.swift in Sources */,
+				9890C5922912B16C009A0203 /* SkillCollectionViewCell.swift in Sources */,
 				98FD753129113609004C2050 /* BaseRequest.swift in Sources */,
 				98FD753E291150D9004C2050 /* CompanyDTO.swift in Sources */,
+				9890C589291264CF009A0203 /* ColorPalette.swift in Sources */,
 				98FD7509291056C2004C2050 /* AppDelegate.swift in Sources */,
 				98FD75242911323C004C2050 /* BaseSession.swift in Sources */,
 				98FD753529113B2D004C2050 /* CompanyDataNetworkService.swift in Sources */,

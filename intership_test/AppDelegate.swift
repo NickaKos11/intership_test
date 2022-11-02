@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  intership_test
-//
-//  Created by Костина Вероника  on 31.10.2022.
-//
-
 import UIKit
 
 @main
@@ -23,8 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func createWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let rootViewController = MainViewController()
-        window?.rootViewController = rootViewController
+        let rootVc = MainViewController()
+        let navigationController = UINavigationController(rootViewController: rootVc)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }
