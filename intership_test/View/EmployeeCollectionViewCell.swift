@@ -37,7 +37,6 @@ final class EmployeeCollectionViewCell: UICollectionViewCell {
             forCellWithReuseIdentifier: String(describing: SkillCollectionViewCell.self)
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.isPagingEnabled = false
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
@@ -138,7 +137,6 @@ extension EmployeeCollectionViewCell: UICollectionViewDelegate, UICollectionView
                 withReuseIdentifier: String(describing: SkillCollectionViewCell.self),
                 for: indexPath) as? SkillCollectionViewCell
         else {
-            // TODO: - Error handling
             return UICollectionViewCell()
         }
         cell.configure(with: data)

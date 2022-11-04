@@ -13,7 +13,7 @@ final class SkillCollectionViewCell: UICollectionViewCell {
 
     private lazy var skillView: UIView = {
         let skillView = UIView()
-        skillView.backgroundColor = ColorPalette.skillView
+        skillView.backgroundColor = ColorPalette.accentColor
         skillView.layer.cornerRadius = Constants.skillViewCornerRadius
         skillView.translatesAutoresizingMaskIntoConstraints = false
         return skillView
@@ -39,26 +39,26 @@ final class SkillCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(skillLabel)
     }
 
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             skillView.topAnchor.constraint(equalTo: contentView.topAnchor),
             skillView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             skillView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             skillView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             skillLabel.leadingAnchor.constraint(
-                equalTo: skillView.leadingAnchor,
+                equalTo: contentView.leadingAnchor,
                 constant: Constants.sideIndent
             ),
             skillLabel.topAnchor.constraint(
-                equalTo: skillView.topAnchor,
+                equalTo: contentView.topAnchor,
                 constant: Constants.verticalIndent
             ),
             skillLabel.trailingAnchor.constraint(
-                equalTo: skillView.trailingAnchor,
+                equalTo: contentView.trailingAnchor,
                 constant: -Constants.sideIndent
             ),
             skillLabel.bottomAnchor.constraint(
-                equalTo: skillView.bottomAnchor,
+                equalTo: contentView.bottomAnchor,
                 constant: -Constants.verticalIndent
             )
         ])

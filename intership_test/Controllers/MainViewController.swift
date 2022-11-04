@@ -1,8 +1,10 @@
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     private var companyDataNetworkService: CompanyDataNetworkServiceProtocol?
     private var employees: [Employee]?
+    private lazy var alert = AlertView()
+    private lazy var activityIndicator = UIActivityIndicatorView()
 
     private lazy var collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
@@ -36,9 +38,17 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = ColorPalette.mainBackground
         view.addSubview(collectionView)
+        view.addSubview(activityIndicator)
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
         setupNavigationBar()
         getCompanyData()
         setupConstraints()
+    }
+
+    @objc
+    private func didpullRefresh() {
+        getCompanyData()
     }
 
     private func setupNavigationBar() {
@@ -61,22 +71,31 @@ class MainViewController: UIViewController {
         ])
     }
 
+    private func showAlert(with error: NetworkError) {
+        alert.configure(errorDescription: error.rawValue)
+        alert.delegate = self
+        view.addSubview(alert)
+        alert.frame = view.frame
+        alert.center = view.center
+    }
+
     private func getCompanyData() {
         companyDataNetworkService?.getCompanyData { result in
             switch result {
             case let .success(companyData):
+                self.activityIndicator.stopAnimating()
                 self.employees = companyData.employess.sorted {$0.name < $1.name}
-                self.collectionView.reloadData()
                 self.title = "\(companyData.name) employees"
+                self.collectionView.reloadData()
             case let .failure(error):
-                // TODO: add alert
-                print(error)
+                self.activityIndicator.stopAnimating()
+                self.showAlert(with: error)
             }
         }
     }
 }
 
-extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(
         _ collectionView: UICollectionView,
@@ -94,13 +113,14 @@ extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                     withReuseIdentifier: String(describing: EmployeeCollectionViewCell.self),
                     for: indexPath) as? EmployeeCollectionViewCell
             else {
-                // TODO: - Error handling
                 return UICollectionViewCell()
             }
             cell.configure(with: data)
             return cell
         }
+}
 
+extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -117,6 +137,14 @@ extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
         return Constants.cellSpasing
+    }
+}
+
+extension MainViewController: AlertViewDelegate {
+    func cancelButtonPressed() {
+        getCompanyData()
+        alert.removeFromSuperview()
+        activityIndicator.startAnimating()
     }
 }
 
