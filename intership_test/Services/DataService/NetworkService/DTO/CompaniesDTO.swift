@@ -1,5 +1,5 @@
 import Foundation
 
-struct CompaniesDTO: Decodable {
+struct CompaniesDTO: Codable {
     let company: CompanyDTO
 }

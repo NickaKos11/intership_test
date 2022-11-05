@@ -1,6 +1,6 @@
 import Foundation
 
-struct EmployeeDTO: Decodable {
+struct EmployeeDTO: Codable {
     let name: String
     let phoneNumber: String
     let skills: [String]

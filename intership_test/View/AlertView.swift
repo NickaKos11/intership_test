@@ -1,7 +1,7 @@
 import UIKit
 
 protocol AlertViewDelegate: AnyObject {
-    func cancelButtonPressed()
+    func reloadButtonPressed()
 }
 
 final class AlertView: UIView {
@@ -36,16 +36,16 @@ final class AlertView: UIView {
         return errorTitle
     }()
 
-    private lazy var cancelButton: UIButton = {
-        let cancelButton = UIButton()
-        cancelButton.titleLabel?.font = UIFont.SFBoldFont(size: Constants.buttonTitleFontSize)
-        cancelButton.setTitle(Strings.buttonText, for: .normal)
-        cancelButton.setTitleColor(ColorPalette.mainText, for: .normal)
-        cancelButton.backgroundColor = ColorPalette.accentColor
-        cancelButton.layer.cornerRadius = Constants.buttonCornerRadius
-        cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        return cancelButton
+    private lazy var reloadButton: UIButton = {
+        let reloadButton = UIButton()
+        reloadButton.titleLabel?.font = UIFont.SFBoldFont(size: Constants.buttonTitleFontSize)
+        reloadButton.setTitle(Strings.buttonText, for: .normal)
+        reloadButton.setTitleColor(ColorPalette.mainText, for: .normal)
+        reloadButton.backgroundColor = ColorPalette.accentColor
+        reloadButton.layer.cornerRadius = Constants.buttonCornerRadius
+        reloadButton.addTarget(self, action: #selector(reloadButtonPressed), for: .touchUpInside)
+        reloadButton.translatesAutoresizingMaskIntoConstraints = false
+        return reloadButton
     }()
 
     override init(frame: CGRect) {
@@ -64,8 +64,8 @@ final class AlertView: UIView {
     }
 
     @objc
-    private func cancelButtonPressed() {
-        self.delegate?.cancelButtonPressed()
+    private func reloadButtonPressed() {
+        self.delegate?.reloadButtonPressed()
     }
 
     private func setupView() {
@@ -73,7 +73,7 @@ final class AlertView: UIView {
             contentView,
             errorTitleLabel,
             errorLabel,
-            cancelButton
+            reloadButton
         ].forEach {
             addSubview($0)
         }
@@ -115,20 +115,20 @@ final class AlertView: UIView {
                 equalTo: contentView.trailingAnchor,
                 constant: -Constants.sideIndent
             ),
-            cancelButton.topAnchor.constraint(
+            reloadButton.topAnchor.constraint(
                 equalTo: errorLabel.bottomAnchor,
                 constant: Constants.labelsIndent
             ),
-            cancelButton.leadingAnchor.constraint(
+            reloadButton.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
                 constant: Constants.sideIndent
             ),
-            cancelButton.trailingAnchor.constraint(
+            reloadButton.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor,
                 constant: -Constants.sideIndent
             ),
-            cancelButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
-            cancelButton.bottomAnchor.constraint(
+            reloadButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
+            reloadButton.bottomAnchor.constraint(
                 equalTo: contentView.bottomAnchor,
                 constant: -Constants.bottomIndent
             )

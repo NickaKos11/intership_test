@@ -1,8 +1,10 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    private var companyDataNetworkService: CompanyDataNetworkServiceProtocol?
+    private var companyDataService: DataServiceProtocol?
+
     private var employees: [Employee]?
+
     private lazy var alert = AlertView()
     private lazy var activityIndicator = UIActivityIndicatorView()
 
@@ -24,10 +26,10 @@ final class MainViewController: UIViewController {
     }()
 
     init(
-        companyDataNetworkService: CompanyDataNetworkServiceProtocol = CompanyDataNetworkService()
+        companyDataService: DataServiceProtocol = DataService()
     ) {
-        self.companyDataNetworkService = companyDataNetworkService
         super.init(nibName: nil, bundle: nil)
+        self.companyDataService = companyDataService
     }
 
     required init?(coder: NSCoder) {
@@ -42,12 +44,7 @@ final class MainViewController: UIViewController {
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         setupNavigationBar()
-        getCompanyData()
         setupConstraints()
-    }
-
-    @objc
-    private func didpullRefresh() {
         getCompanyData()
     }
 
@@ -80,7 +77,7 @@ final class MainViewController: UIViewController {
     }
 
     private func getCompanyData() {
-        companyDataNetworkService?.getCompanyData { result in
+        companyDataService?.getCompanyInfo(completion: { result in
             switch result {
             case let .success(companyData):
                 self.activityIndicator.stopAnimating()
@@ -91,12 +88,11 @@ final class MainViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
                 self.showAlert(with: error)
             }
-        }
+        })
     }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -141,7 +137,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension MainViewController: AlertViewDelegate {
-    func cancelButtonPressed() {
+    func reloadButtonPressed() {
         getCompanyData()
         alert.removeFromSuperview()
         activityIndicator.startAnimating()

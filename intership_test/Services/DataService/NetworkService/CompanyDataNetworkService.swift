@@ -14,6 +14,8 @@ final class CompanyDataNetworkService: CompanyDataNetworkServiceProtocol {
     private let backgroundQueue: DispatchQueue
     private let completionQueue: DispatchQueue
 
+    private let cacheService: CompanyDataCacheServiceProtocol
+
     init(
         baseUrl: BaseURL = BaseURL(
             baseURLData: BaseURLData(
@@ -24,17 +26,19 @@ final class CompanyDataNetworkService: CompanyDataNetworkServiceProtocol {
         ),
         request: HTTPRequest = BaseRequest(),
         completionQueue: DispatchQueue = DispatchQueue.main,
-        backgroundQueue: DispatchQueue = DispatchQueue.global(qos: .background)
+        backgroundQueue: DispatchQueue = DispatchQueue.global(qos: .background),
+        cacheService: CompanyDataCacheServiceProtocol = CompanyDataCacheService()
     ) {
         self.baseUrl = baseUrl
         self.request = request
         self.backgroundQueue = backgroundQueue
         self.completionQueue = completionQueue
+        self.cacheService = cacheService
     }
 
     func getCompanyData(completion: @escaping (Result<Company, NetworkError>) -> Void) {
-
         backgroundQueue.async { [weak self] in
+
             guard let self = self else {
                 return
             }
@@ -46,6 +50,15 @@ final class CompanyDataNetworkService: CompanyDataNetworkServiceProtocol {
                     switch result {
                     case let .success(companiesDTO):
                         completion(.success(Company(from: companiesDTO)))
+
+                        self.cacheService.saveAll(data: companiesDTO) { result in
+                            switch result {
+                            case .success:
+                                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "CacheTimeInSeconds")
+                            case .failure(let error):
+                                print("Cache error: \(error)")
+                            }
+                        }
                     case let .failure(error):
                         completion(.failure(error))
                     }
