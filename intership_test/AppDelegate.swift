@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let rootVc = MainViewController()
         let navigationController = UINavigationController(rootViewController: rootVc)
+        navigationController.modalPresentationStyle = .pageSheet
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

@@ -9,7 +9,7 @@ protocol HTTPRequest {
 }
 
 struct BaseRequest: HTTPRequest {
-    
+
     func execute<T>(
         url: URL,
         session: URLSession,
@@ -41,6 +41,5 @@ struct BaseRequest: HTTPRequest {
             completion(.success(result))
         }
         task.resume()
-        session.finishTasksAndInvalidate()
     }
 }
