@@ -1,5 +1,5 @@
 import Foundation
-public enum NetworkError: String, Error {
+enum NetworkError: String, Error {
     case notNet = "Отсутствует подключение к сети."
     case emptyResponseError = "Не удалось получить данные с сервера."
     case emptyDataError = "Данные отсутствуют."

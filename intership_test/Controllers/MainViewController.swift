@@ -1,8 +1,10 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-    private var companyDataNetworkService: CompanyDataNetworkServiceProtocol?
+    private var companyDataService: DataServiceProtocol?
+
     private var employees: [Employee]?
+
     private lazy var alert = AlertView()
     private lazy var activityIndicator = UIActivityIndicatorView()
 
@@ -24,12 +26,13 @@ final class MainViewController: UIViewController {
     }()
 
     init(
-        companyDataNetworkService: CompanyDataNetworkServiceProtocol = CompanyDataNetworkService()
+        companyDataService: DataServiceProtocol = DataService()
     ) {
-        self.companyDataNetworkService = companyDataNetworkService
         super.init(nibName: nil, bundle: nil)
+        self.companyDataService = companyDataService
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,12 +45,7 @@ final class MainViewController: UIViewController {
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         setupNavigationBar()
-        getCompanyData()
         setupConstraints()
-    }
-
-    @objc
-    private func didpullRefresh() {
         getCompanyData()
     }
 
@@ -80,15 +78,17 @@ final class MainViewController: UIViewController {
     }
 
     private func getCompanyData() {
-        companyDataNetworkService?.getCompanyData { result in
+        companyDataService?.getCompanyInfo { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            self.activityIndicator.stopAnimating()
             switch result {
             case let .success(companyData):
-                self.activityIndicator.stopAnimating()
                 self.employees = companyData.employess.sorted {$0.name < $1.name}
                 self.title = "\(companyData.name) employees"
                 self.collectionView.reloadData()
             case let .failure(error):
-                self.activityIndicator.stopAnimating()
                 self.showAlert(with: error)
             }
         }
@@ -96,12 +96,11 @@ final class MainViewController: UIViewController {
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        self.employees?.count ?? 0
+        employees?.count ?? 0
     }
 
     func collectionView(
@@ -141,7 +140,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension MainViewController: AlertViewDelegate {
-    func cancelButtonPressed() {
+    func reloadButtonPressed() {
         getCompanyData()
         alert.removeFromSuperview()
         activityIndicator.startAnimating()

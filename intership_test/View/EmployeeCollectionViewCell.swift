@@ -70,9 +70,7 @@ final class EmployeeCollectionViewCell: UICollectionViewCell {
             phoneLabel,
             collectionView
         ]
-            .forEach {
-                contentView.addSubview($0)
-            }
+            .forEach { contentView.addSubview($0) }
     }
 
     private func setupConstraints() {

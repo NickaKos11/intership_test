@@ -4,7 +4,7 @@ struct BaseSession {
     let session: URLSession
 
     init() {
-        self.session = URLSession.init(configuration: .default)
-        self.session.configuration.timeoutIntervalForRequest = TimeInterval(15)
+        session = URLSession.init(configuration: .default)
+        session.configuration.timeoutIntervalForRequest = TimeInterval(15)
     }
 }

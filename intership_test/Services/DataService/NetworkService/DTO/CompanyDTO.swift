@@ -1,6 +1,6 @@
 import Foundation
 
-struct CompanyDTO: Decodable {
+struct CompanyDTO: Codable {
     let name: String
     let employees: [EmployeeDTO]
 }
