@@ -7,7 +7,6 @@ protocol DataServiceProtocol {
 }
 
 final class DataService: DataServiceProtocol {
-
     private let cacheService: CompanyDataCacheServiceProtocol
     private let networkService: CompanyDataNetworkServiceProtocol
     private let cacheTimeInSeconds: Double
@@ -23,21 +22,44 @@ final class DataService: DataServiceProtocol {
     }
 
     func getCompanyInfo(completion: @escaping (Result<Company, NetworkError>) -> Void) {
-        if cacheUpdateIsNeed(cacheTimeInSeconds) {
-            networkService.getCompanyData(completion: completion)
+        if cacheUpdateIsNeeded(cacheTimeInSeconds) {
+            loadFromNetwork(completion: completion)
         } else {
             cacheService.loadAll { result in
                 switch result {
                 case .success(let cacheInfo):
                     completion(.success(cacheInfo))
                 case .failure:
-                    self.networkService.getCompanyData(completion: completion)
+                    self.loadFromNetwork(completion: completion)
                 }
             }
         }
     }
 
-    private func cacheUpdateIsNeed(_ cacheTimeInSeconds: Double) -> Bool {
+    private func loadFromNetwork(completion: @escaping (Result<Company, NetworkError>) -> Void) {
+        networkService.getCompanyData { networkResult in
+            switch networkResult {
+            case .success(let companiesDTO):
+                self.saveToCache(companiesDTO)
+                completion(.success(Company(from: companiesDTO)))
+            case .failure(let networkError):
+                completion(.failure(networkError))
+            }
+        }
+    }
+
+    private func saveToCache(_ companiesInfo: CompaniesDTO) {
+        cacheService.saveAll(data: companiesInfo) { result in
+            switch result {
+            case .success:
+                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "CacheTimeInSeconds")
+            case .failure(let error):
+                print("Cache error: \(error)")
+            }
+        }
+    }
+
+    private func cacheUpdateIsNeeded(_ cacheTimeInSeconds: Double) -> Bool {
         if  Date().timeIntervalSince1970 - cacheTimeInSeconds > Constants.cacheTimeIntervalInSeconds {
             return true
         }
