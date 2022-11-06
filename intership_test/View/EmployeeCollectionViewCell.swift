@@ -56,6 +56,7 @@ final class EmployeeCollectionViewCell: UICollectionViewCell {
         nameLabel.text = employeeInfo.name
         phoneLabel.text = "Phone: \(employeeInfo.phoneNumber)"
         skills = employeeInfo.skills
+        collectionView.reloadData()
     }
 
     private func setup() {

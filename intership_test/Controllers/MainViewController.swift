@@ -43,10 +43,15 @@ final class MainViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(activityIndicator)
         activityIndicator.center = view.center
-        activityIndicator.startAnimating()
         setupNavigationBar()
         setupConstraints()
+        activityIndicator.startAnimating()
         getCompanyData()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 
     private func setupNavigationBar() {
@@ -93,6 +98,7 @@ final class MainViewController: UIViewController {
             }
         }
     }
+
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -125,7 +131,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let width = collectionView.bounds.width-2*Constants.sideIndent
+        let width = view.frame.width-2*Constants.sideIndent
         let height = Constants.cellHeight
         return CGSize(width: width, height: height)
     }
