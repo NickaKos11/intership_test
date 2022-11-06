@@ -5,6 +5,7 @@ protocol AlertViewDelegate: AnyObject {
 }
 
 final class AlertView: UIView {
+
     weak var delegate: AlertViewDelegate?
 
     private lazy var contentView: UIView = {
@@ -54,6 +55,7 @@ final class AlertView: UIView {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
@@ -65,7 +67,7 @@ final class AlertView: UIView {
 
     @objc
     private func reloadButtonPressed() {
-        self.delegate?.reloadButtonPressed()
+        delegate?.reloadButtonPressed()
     }
 
     private func setupView() {
@@ -74,9 +76,7 @@ final class AlertView: UIView {
             errorTitleLabel,
             errorLabel,
             reloadButton
-        ].forEach {
-            addSubview($0)
-        }
+        ].forEach { addSubview($0) }
     }
 
     private func setupConstraints() {

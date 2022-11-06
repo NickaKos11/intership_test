@@ -24,7 +24,7 @@ final class DataService: DataServiceProtocol {
 
     func getCompanyInfo(completion: @escaping (Result<Company, NetworkError>) -> Void) {
         if cacheUpdateIsNeed(cacheTimeInSeconds) {
-            self.networkService.getCompanyData(completion: completion)
+            networkService.getCompanyData(completion: completion)
         } else {
             cacheService.loadAll { result in
                 switch result {

@@ -6,8 +6,8 @@ struct Employee {
     let skills: [String]
 
     init(from dto: EmployeeDTO) {
-        self.name = dto.name
-        self.phoneNumber = dto.phoneNumber
-        self.skills = dto.skills
+        name = dto.name
+        phoneNumber = dto.phoneNumber
+        skills = dto.skills
     }
 }

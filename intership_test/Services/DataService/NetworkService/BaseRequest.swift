@@ -3,17 +3,18 @@ import Foundation
 protocol HTTPRequest {
     func execute<T: Decodable>(
         url: URL,
+        session: URLSession,
         completion: @escaping (Result<T, NetworkError>) -> Void
     )
 }
 
 struct BaseRequest: HTTPRequest {
+    
     func execute<T>(
         url: URL,
+        session: URLSession,
         completion: @escaping (Result<T, NetworkError>) -> Void
     ) where T: Decodable {
-        let session = BaseSession.init().session
-
         let task = session.dataTask(with: url) {data, response, error in
 
             if error != nil {

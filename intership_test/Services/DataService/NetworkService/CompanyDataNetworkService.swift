@@ -9,6 +9,7 @@ protocol CompanyDataNetworkServiceProtocol: AnyObject {
 final class CompanyDataNetworkService: CompanyDataNetworkServiceProtocol {
 
     private var baseUrl: BaseURL
+    private var baseSession: BaseSession
     private let request: HTTPRequest
 
     private let backgroundQueue: DispatchQueue
@@ -24,12 +25,14 @@ final class CompanyDataNetworkService: CompanyDataNetworkServiceProtocol {
                 baseURLPath: .employees
             )
         ),
+        baseSession: BaseSession = BaseSession(),
         request: HTTPRequest = BaseRequest(),
         completionQueue: DispatchQueue = DispatchQueue.main,
         backgroundQueue: DispatchQueue = DispatchQueue.global(qos: .background),
         cacheService: CompanyDataCacheServiceProtocol = CompanyDataCacheService()
     ) {
         self.baseUrl = baseUrl
+        self.baseSession = baseSession
         self.request = request
         self.backgroundQueue = backgroundQueue
         self.completionQueue = completionQueue
@@ -44,7 +47,8 @@ final class CompanyDataNetworkService: CompanyDataNetworkServiceProtocol {
             }
 
             self.request.execute(
-                url: self.baseUrl.url
+                url: self.baseUrl.url,
+                session: self.baseSession.session
             ) { (result: (Result<CompaniesDTO, NetworkError>)) in
                 self.completionQueue.async {
                     switch result {

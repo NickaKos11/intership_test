@@ -5,7 +5,7 @@ struct Company {
     let employess: [Employee]
 
     init(from dto: CompaniesDTO) {
-        self.name = dto.company.name
-        self.employess = dto.company.employees.map { Employee(from: $0) }
+        name = dto.company.name
+        employess = dto.company.employees.map { Employee(from: $0) }
     }
 }

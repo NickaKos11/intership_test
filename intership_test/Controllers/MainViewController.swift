@@ -32,6 +32,7 @@ final class MainViewController: UIViewController {
         self.companyDataService = companyDataService
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -77,18 +78,20 @@ final class MainViewController: UIViewController {
     }
 
     private func getCompanyData() {
-        companyDataService?.getCompanyInfo(completion: { result in
+        companyDataService?.getCompanyInfo { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            self.activityIndicator.stopAnimating()
             switch result {
             case let .success(companyData):
-                self.activityIndicator.stopAnimating()
                 self.employees = companyData.employess.sorted {$0.name < $1.name}
                 self.title = "\(companyData.name) employees"
                 self.collectionView.reloadData()
             case let .failure(error):
-                self.activityIndicator.stopAnimating()
                 self.showAlert(with: error)
             }
-        })
+        }
     }
 }
 
@@ -97,7 +100,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        self.employees?.count ?? 0
+        employees?.count ?? 0
     }
 
     func collectionView(
